@@ -1,3 +1,5 @@
+import 'package:calculate/components/GridGenerator.dart';
+import 'package:calculate/components/button.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Calculate',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -34,7 +37,27 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[],
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              child: Center(
+                child: Text("Formula"),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: GridView.builder(
+              itemCount: calcGrid.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return calcGrid[index];
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
